@@ -6,6 +6,8 @@
 package sashimipos;
 
 import java.util.LinkedHashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -85,6 +87,21 @@ public class Cart {
     public void setTotal(int total) {
         this.total = total;
     }
-    
+    /*@author onishi
+    */
+    public Timer getStartTimer(){
+        format = new SimpleDateFormat("HH:mm:ss");
+        Timer t = new Timer();
+        t.schedule(new TimerLabelTask(), 0,1000);
+    }
+    public void setTime(){
+        Calendar calendar = Calendar.getInstance(Locale.JAPAN);
+        this.setText(format.format(calendar.getTime()));
+    }
+    public TimerLabelTask extends TimerTask(){
+        public void run(){
+            setTime();
+        }
+    }
     
 }
